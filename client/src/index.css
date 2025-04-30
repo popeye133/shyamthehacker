@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 142 71% 45%;
+  --primary-foreground: 144 80% 10%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+
+  /* Custom colors */
+  --terminal: 142 71% 45%;
+  --terminal-dim: 142 60% 38%;
+  --neon-blue: 210 100% 50%;
+  --neon-purple: 262 100% 65%;
+  --dark: 240 10% 3.9%;
+  --dark-lighter: 240 5% 10%;
+  --dark-light: 240 5% 15%;
+  
+  /* For charts */
+  --chart-1: 142 71% 45%;
+  --chart-2: 210 100% 50%;
+  --chart-3: 262 100% 65%;
+  --chart-4: 33 100% 50%;
+  --chart-5: 340 82% 52%;
+}
+
+/* Sidebar colors - match with theme */
+:root {
+  --sidebar-background: 240 10% 3.9%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-primary: 142 71% 45%;
+  --sidebar-primary-foreground: 144 80% 10%;
+  --sidebar-accent: 240 3.7% 15.9%;
+  --sidebar-accent-foreground: 0 0% 98%;
+  --sidebar-border: 240 3.7% 15.9%;
+  --sidebar-ring: 240 4.9% 83.9%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-[#00FF41] via-[#0072FF] to-[#7B5CFF] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient;
+  }
+
+  .terminal-window {
+    @apply bg-[rgba(26,26,26,0.9)] border border-gray-700 rounded-lg shadow-[0_10px_30px_-10px_rgba(0,255,65,0.2)];
+  }
+
+  .terminal-header {
+    @apply bg-gray-800 rounded-t-lg p-2 flex items-center;
+  }
+
+  .terminal-dot {
+    @apply h-3 w-3 rounded-full mr-1.5;
+  }
+
+  .terminal-body {
+    @apply p-4 font-mono text-[#00FF41] h-[300px] overflow-y-auto;
+  }
+
+  .terminal-prompt::before {
+    content: "$ ";
+  }
+
+  .cursor::after {
+    content: "▋";
+    @apply animate-blink;
+  }
+
+  .matrix-bg {
+    @apply fixed top-0 left-0 w-full h-full bg-[rgba(18,18,18,0.97)] -z-10;
+  }
+
+  .terminal-line {
+    @apply leading-normal mb-2;
+  }
+
+  .skill-badge {
+    @apply transition-all duration-300;
+  }
+
+  .skill-badge:hover {
+    @apply -translate-y-1 shadow-[0_10px_20px_-10px_rgba(0,255,65,0.5)];
+  }
+
+  .project-card {
+    @apply transition-all duration-300 translate-y-0;
+  }
+
+  .project-card:hover {
+    @apply -translate-y-2.5 shadow-[0_20px_25px_-5px_rgba(0,255,65,0.1),0_10px_10px_-5px_rgba(0,114,255,0.04)];
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer utilities {
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  .animate-typing {
+    animation: typing 3.5s steps(40, end);
+  }
+
+  .animate-gradient {
+    animation: gradient 5s ease infinite;
+  }
+
+  .animate-glitch {
+    animation: glitch 5s infinite;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.glitch {
+  position: relative;
+  text-shadow: 0.05em 0 0 rgba(0,255,65,0.75), -0.025em -0.05em 0 rgba(123,92,255,0.75), 0.025em 0.05em 0 rgba(0,114,255,0.75);
+  animation: glitch 500ms infinite;
+}
